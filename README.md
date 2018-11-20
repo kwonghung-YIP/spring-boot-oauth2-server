@@ -23,7 +23,7 @@ docker-compose
 
 ### Support following OAuth grant types
 
-- Authorization Code
+- [Authorization Code]()
 - Implicit
 - Resource Owner Credential (Password)
 - Client Credential
