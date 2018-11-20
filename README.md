@@ -1,9 +1,30 @@
 ## spring-boot-oauth2-server
 
 ### Description
-Deep dive into the **Authorization Server** implementation with [spring-security-oauth](https://projects.spring.io/spring-security-oauth/docs/oauth2.html) project, illustrate the advance features such as:
+A production ready **Authorization Server** implementation provided by the [spring-security-oauth](https://projects.spring.io/spring-security-oauth/docs/oauth2.html) project, illustrate the advance features such as:
 
-- jdbc token store and the corresponding schema provided in the code, 
-- enable CORS filter to support ajax preflight request
+- Support multiple nodes, client registration, token and user approval records are share among the nodes with
+  - Redis
+  - Jdbc
+  - Spring session
+- Enable the CORS filter to support ajax preflight request
+- Provide the UI to manage the client registration records
+- User Repository backed by the openldap
 
+### Getting Started with the docker compose file
 
+- mysql
+- redis
+- openldap
+
+```
+docker-compose
+```
+
+### Support following OAuth grant types
+
+- Authorization Code
+- Implicit
+- Resource Owner Credential (Password)
+- Client Credential
+- Refresh Token
