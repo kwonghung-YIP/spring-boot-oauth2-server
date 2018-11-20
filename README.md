@@ -24,7 +24,7 @@ docker-compose
 ### Support following OAuth grant types
 
 - [Authorization Code](../../wiki/grant-type-authorization-code)
-- [Implicit](/wiki/grant-type-implicit)
-- [Resource Owner Credential](/wiki/grant-type-resource-owner-credential)
-- [Client Credential](/wiki/grant-type-client-credential)
-- [Refresh Token](/wiki/grant-type-refresh-token)
+- [Implicit](../../wiki/grant-type-implicit)
+- [Resource Owner Credential](../../wiki/grant-type-resource-owner-credential)
+- [Client Credential](../../wiki/grant-type-client-credential)
+- [Refresh Token](../../wiki/grant-type-refresh-token)
