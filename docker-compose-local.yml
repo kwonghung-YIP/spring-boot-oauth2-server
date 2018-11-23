@@ -1,11 +1,16 @@
 version: '3.7'
 services:
+  portainer:
+    image: "portainer/portainer"
+    command: --admin-password '$2y$05$qFHAlNAH0A.6oCDe1/4W.ueCWC/iTfBMXIHBI97QYfMWlMCJ7N.a6'
+    ports:
+     - "9000:9000"
   redis:
-    image: "redis:latest"
+    image: "redis"
     ports:
      - "6379:6379"
   mysql:
-    image: "mysql:latest"
+    image: "mysql"
     ports:
      - "3306:3306"
     environment:
@@ -14,7 +19,7 @@ services:
      - MYSQL_USER=oauth2-server
      - MYSQL_PASSWORD=passw0rd
   openldap:
-    image: "osixia/openldap:latest"
+    image: "osixia/openldap"
     ports:
      - "389:389"
      - "689:689"
