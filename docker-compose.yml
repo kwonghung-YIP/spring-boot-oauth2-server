@@ -1,0 +1,6 @@
+version: '3'
+services:
+  redis:
+    image: "redis:latest"
+  mysql:
+    image: "mysql:latest"
