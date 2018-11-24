@@ -4,10 +4,17 @@ services:
     image: "portainer/portainer"
     ports:
      - "9000:9000"
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
   redis:
     image: "redis"
     ports:
      - "6379:6379"
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
   mysql:
     image: "mysql"
     ports:
@@ -17,8 +24,14 @@ services:
      - MYSQL_DATABASE=oauth2
      - MYSQL_USER=oauth2-server
      - MYSQL_PASSWORD=passw0rd
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone     
   openldap:
     image: "osixia/openldap"
     ports:
      - "389:389"
      - "689:689"
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
