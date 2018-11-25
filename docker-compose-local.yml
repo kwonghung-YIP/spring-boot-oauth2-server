@@ -35,3 +35,9 @@ services:
     volumes:
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
+  openldap-admin:
+    image: "osixia/phpldapadmin"
+    ports:
+     - "6443:443"
+    environment:
+     - PHPLDAPADMIN_LDAP_HOSTS=openldap
