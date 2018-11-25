@@ -41,3 +41,5 @@ services:
      - "6443:443"
     environment:
      - PHPLDAPADMIN_LDAP_HOSTS=openldap
+    links:
+     - openldap
