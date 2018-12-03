@@ -1,5 +1,12 @@
 version: '3.7'
 services:
+  oauth2-server:
+    image: "gradle:5.0.0-jdk8"
+    deploy: 
+      mode: replicated
+      replicas: 2
+    ports:
+     - "8080:8080"
   portainer:
     image: "portainer/portainer"
     ports:
