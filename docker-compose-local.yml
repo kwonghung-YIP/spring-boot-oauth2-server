@@ -1,0 +1,50 @@
+version: '3.7'
+services:
+  portainer:
+    image: "portainer/portainer"
+    ports:
+     - "9000:9000"
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+  redis:
+    image: "redis"
+    ports:
+     - "6379:6379"
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+  mysql:
+    image: "mysql"
+    ports:
+     - "3306:3306"
+    environment:
+     - MYSQL_ROOT_PASSWORD=passw0rd
+     - MYSQL_DATABASE=oauth2
+     - MYSQL_USER=oauth2-server
+     - MYSQL_PASSWORD=passw0rd
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone     
+  openldap:
+    image: "osixia/openldap"
+    ports:
+     - "389:389"
+     - "689:689"
+    environment:
+     - LDAP_ORGANISATION=Spring boot OAuth2 POC
+     - LDAP_DOMAIN1=hung.org
+     - LDAP_BASE_DN1=dc=hung,dc=org
+     - LDAP_ADMIN_PASSWORD=passw0rd
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+  openldap-admin:
+    image: "osixia/phpldapadmin"
+    ports:
+     - "6443:443"
+    environment:
+     - PHPLDAPADMIN_LDAP_HOSTS=openldap
+    links:
+     - openldap
