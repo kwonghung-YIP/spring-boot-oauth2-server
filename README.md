@@ -20,6 +20,13 @@ A production ready **Authorization Server** implementation provided by the [spri
 ```
 docker-compose
 ```
+### Start docker compose for your local development
+
+```
+git clone https://github.com/kwonghung-YIP/spring-boot-oauth2-server.git
+cd spring-boot-oauth2-server
+docker-compose -f docker-compose-development.yml up --detach
+```
 
 ### Support following OAuth grant types
 
