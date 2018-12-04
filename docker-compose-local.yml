@@ -6,7 +6,12 @@ services:
       mode: replicated
       replicas: 2
     ports:
-     - "8080:8080"
+     - "7070:8080"
+    volumes:
+     - type: bind
+       source: ./
+       target: /usr/local/springboot
+    command: gradle bootRun
   portainer:
     image: "portainer/portainer"
     ports:
