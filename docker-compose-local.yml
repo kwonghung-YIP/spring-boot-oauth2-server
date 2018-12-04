@@ -11,6 +11,7 @@ services:
      - type: bind
        source: ./
        target: /usr/local/springboot
+    working_dir: /usr/local/springboot
     command: gradle bootRun
   portainer:
     image: "portainer/portainer"
