@@ -1,16 +1,11 @@
 version: '3.7'
 services:
-  #network_mode: "bridge"
+  haproxy:
+    image: "haproxy:18.14"
+    ports:
+     - "80:80"
   oauth2-server:
     image: "gradle:5.0.0-jdk8"
-    deploy: 
-      mode: replicated
-      replicas: 2
-    ports:
-     - target: 8080
-       published: 7070
-       protocol: tcp
-       mode: ingress
     volumes:
      - type: bind
        source: ./
