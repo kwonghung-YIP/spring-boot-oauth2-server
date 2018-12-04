@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+  network_mode: "bridge"
   oauth2-server:
     image: "gradle:5.0.0-jdk8"
     deploy: 
