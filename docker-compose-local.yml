@@ -4,6 +4,8 @@ services:
     image: "haproxy:1.8.14"
     ports:
      - "80:80"
+    volumes:
+     - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
     image: "gradle:5.0.0-jdk8"
     volumes:
