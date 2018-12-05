@@ -8,6 +8,10 @@ services:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
     image: "gradle:5.0.0-jdk8"
+    neteorks:
+      mynet:
+        aliases:
+         - oauth2-server
     volumes:
      - type: bind
        source: ./
@@ -62,3 +66,7 @@ services:
      - PHPLDAPADMIN_LDAP_HOSTS=openldap
     links:
      - openldap
+networks:
+  mynet:
+    driver: bridge
+    attachable: true
