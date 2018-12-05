@@ -8,16 +8,16 @@ services:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
     image: "gradle:5.0.0-jdk8"
-    networks:
-      mynet:
-        aliases:
-         - oauth2-server
     volumes:
      - type: bind
        source: ./
        target: /usr/local/springboot
     working_dir: /usr/local/springboot
-    command: gradle bootRun
+    command: gradle tasks
+    networks:
+      mynet:
+        aliases:
+         - oauth2-server    
   portainer:
     image: "portainer/portainer"
     ports:
@@ -33,6 +33,8 @@ services:
     volumes:
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
+    networks:
+     - mynet
   mysql:
     image: "mysql"
     ports:
@@ -44,7 +46,9 @@ services:
      - MYSQL_PASSWORD=passw0rd
     volumes:
      - /etc/localtime:/etc/localtime
-     - /etc/timezone:/etc/timezone     
+     - /etc/timezone:/etc/timezone
+    networks:
+     - mynet
   openldap:
     image: "osixia/openldap"
     ports:
@@ -58,6 +62,8 @@ services:
     volumes:
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
+    networks:
+     - mynet
   openldap-admin:
     image: "osixia/phpldapadmin"
     ports:
