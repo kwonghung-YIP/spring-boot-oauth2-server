@@ -7,7 +7,7 @@ services:
     volumes:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
-    image: "gradle:5.0.0-jdk8"
+    image: "gradle:4.10-jdk8"
     volumes:
      - type: bind
        source: ./
