@@ -13,11 +13,11 @@ services:
        source: ./
        target: /usr/local/springboot
     working_dir: /usr/local/springboot
-    command: gradle tasks
+    command: gradle tasks build bootRun
     networks:
       mynet:
         aliases:
-         - oauth2-server    
+         - oauth2-server
   portainer:
     image: "portainer/portainer"
     ports:
@@ -34,7 +34,9 @@ services:
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
     networks:
-     - mynet
+      mynet:
+        aliases:
+         - redis
   mysql:
     image: "mysql"
     ports:
