@@ -8,7 +8,7 @@ services:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
     image: "gradle:5.0.0-jdk8"
-    neteorks:
+    networks:
       mynet:
         aliases:
          - oauth2-server
