@@ -1,9 +1,6 @@
 version: '3.7'
 
 services:
-  build:
-    context: .
-    image: "oauth2-server:latest"
   haproxy:
     image: "haproxy:1.8.14"
     ports:
@@ -11,7 +8,8 @@ services:
     volumes:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
-    image: "oauth2-server:latest"
+    build:
+      context: .
     environment:
      - SPRING_PROFILES_ACTIVE=docker
     volumes:
