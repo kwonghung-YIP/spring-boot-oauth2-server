@@ -3,6 +3,6 @@ LABEL maintainer="kwonghung.yip@gmail.com"
 
 COPY . .
 
-RUN chmod +w gradlew && gradlew build
+RUN chmod +x gradlew && gradlew build
 
 CMD ["./gradlew", "bootRun"]
