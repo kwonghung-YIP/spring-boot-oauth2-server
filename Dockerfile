@@ -5,6 +5,6 @@ COPY --chown=gradle:gradle . .
 
 RUN chmod u+x gradlew 
 
-RUN ./gradlew build
+RUN ./gradlew build -x test
 
 CMD ["./gradlew", "bootRun"]
