@@ -1,8 +1,9 @@
 version: '3.7'
-build:
- context: .
- image: oauth2-server:latest
+
 services:
+  build:
+    context: .
+    image: "oauth2-server:latest"
   haproxy:
     image: "haproxy:1.8.14"
     ports:
@@ -10,7 +11,7 @@ services:
     volumes:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
-    image: "gradle:4.10-jdk8"
+    image: "oauth2-server:latest"
     environment:
      - SPRING_PROFILES_ACTIVE=docker
     volumes:
@@ -18,7 +19,6 @@ services:
        source: ./
        target: /usr/local/springboot
     working_dir: /usr/local/springboot
-    command: gradle tasks build bootRun
     networks:
       mynet:
         aliases:
