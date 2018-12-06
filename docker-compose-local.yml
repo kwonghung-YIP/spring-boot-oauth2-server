@@ -1,4 +1,7 @@
 version: '3.7'
+build:
+ context: .
+ image: oauth2-server:latest
 services:
   haproxy:
     image: "haproxy:1.8.14"
