@@ -8,6 +8,8 @@ services:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   oauth2-server:
     image: "gradle:4.10-jdk8"
+    environment:
+     - SPRING_PROFILES_ACTIVE=docker
     volumes:
      - type: bind
        source: ./
