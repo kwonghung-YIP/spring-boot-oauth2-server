@@ -12,11 +12,6 @@ services:
       context: .
     environment:
      - SPRING_PROFILES_ACTIVE=docker
-    volumes:
-     - type: bind
-       source: ./
-       target: /usr/local/springboot
-    working_dir: /usr/local/springboot
     networks:
       mynet:
         aliases:
