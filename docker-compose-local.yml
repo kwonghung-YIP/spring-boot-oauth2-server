@@ -12,18 +12,19 @@ services:
       context: .
     environment:
      - SPRING_PROFILES_ACTIVE=docker
+     - com.docker.compose.container-number
     networks:
       mynet:
         aliases:
          - oauth2-server
   portainer:
     image: "portainer/portainer"
-    ports:
-     - "9000:9000"
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
+    networks:
+     - host
   redis:
     image: "redis"
     ports:
