@@ -23,8 +23,7 @@ services:
      - /var/run/docker.sock:/var/run/docker.sock
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
-    networks:
-     - host
+    network_mode: "host"
   redis:
     image: "redis"
     ports:
