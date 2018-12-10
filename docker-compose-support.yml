@@ -1,4 +1,9 @@
 version: '3.7'
+networks:
+  mynet:
+    driver: bridge
+    attachable: true
+    
 services:
   portainer:
     image: "portainer/portainer"
@@ -8,6 +13,7 @@ services:
      - /var/run/docker.sock:/var/run/docker.sock
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
+    network_mode: "host"     
   redis:
     image: "redis"
     ports:
@@ -15,6 +21,9 @@ services:
     volumes:
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
+    networks:
+      mynet:
+        alias: redis
   mysql:
     image: "mysql"
     ports:
@@ -26,7 +35,10 @@ services:
      - MYSQL_PASSWORD=passw0rd
     volumes:
      - /etc/localtime:/etc/localtime
-     - /etc/timezone:/etc/timezone     
+     - /etc/timezone:/etc/timezone
+    networks:
+      mynet:
+        alias: mysql     
   openldap:
     image: "osixia/openldap"
     ports:
@@ -40,11 +52,14 @@ services:
     volumes:
      - /etc/localtime:/etc/localtime
      - /etc/timezone:/etc/timezone
+    networks:
+      mynet:
+        alias: openldap     
   openldap-admin:
     image: "osixia/phpldapadmin"
     ports:
      - "6443:443"
     environment:
      - PHPLDAPADMIN_LDAP_HOSTS=openldap
-    links:
-     - openldap
+    networks:
+     - mynet
