@@ -11,20 +11,16 @@ services:
     build:
       context: .
     environment:
-     - SPRING_PROFILES_ACTIVE=docker
+     - SPRING_PROFILES_ACTIVE=server-1
     networks:
-      mynet:
-        aliases:
-         - oauth2-server
+     - mynet
   oauth2-server-2:
     build:
       context: .
     environment:
-     - SPRING_PROFILES_ACTIVE=docker
+     - SPRING_PROFILES_ACTIVE=server-2
     networks:
-      mynet:
-        aliases:
-         - oauth2-server         
+     - mynet     
   portainer:
     image: "portainer/portainer"
     volumes:
