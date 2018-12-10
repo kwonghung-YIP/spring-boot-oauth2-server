@@ -23,7 +23,8 @@ services:
      - /etc/timezone:/etc/timezone
     networks:
       mynet:
-        alias: redis
+        aliases:
+         - redis
   mysql:
     image: "mysql"
     ports:
@@ -38,7 +39,8 @@ services:
      - /etc/timezone:/etc/timezone
     networks:
       mynet:
-        alias: mysql     
+        aliases:
+         - mysql     
   openldap:
     image: "osixia/openldap"
     ports:
@@ -54,7 +56,8 @@ services:
      - /etc/timezone:/etc/timezone
     networks:
       mynet:
-        alias: openldap     
+        alias:
+         - openldap     
   openldap-admin:
     image: "osixia/phpldapadmin"
     ports:
