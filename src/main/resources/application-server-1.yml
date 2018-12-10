@@ -8,14 +8,19 @@ spring:
     password: passw0rd
     initialization-mode: always 
     platform: mysql
-    schema:    - classpath:scheme-mysql.sql
-    hikari:      maximum-pool-size: 5 
+    schema:
+    - classpath:scheme-mysql.sql
+    hikari:
+      maximum-pool-size: 5 
       minimum-idle: 3
   
   redis:
     host: redis
     port: 6379
-      ldap:    urls:    - ldap://openldap:389
+    
+  ldap:
+    urls:
+    - ldap://openldap:389
     username: admin 
     password: passw0rd
     base: dc=hung,dc=org
