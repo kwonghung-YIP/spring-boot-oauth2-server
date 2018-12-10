@@ -7,16 +7,24 @@ services:
      - "80:80"
     volumes:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
-  oauth2-server:
+  oauth2-server-1:
     build:
       context: .
     environment:
      - SPRING_PROFILES_ACTIVE=docker
-     - com.docker.compose.container-number
     networks:
       mynet:
         aliases:
          - oauth2-server
+  oauth2-server-2:
+    build:
+      context: .
+    environment:
+     - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      mynet:
+        aliases:
+         - oauth2-server         
   portainer:
     image: "portainer/portainer"
     volumes:
