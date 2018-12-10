@@ -7,6 +7,10 @@ services:
      - "80:80"
     volumes:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    user: haproxy
+    group: haproxy
+    networks:
+     - mynet
   oauth2-server-1:
     build:
       context: .
@@ -20,63 +24,8 @@ services:
     environment:
      - SPRING_PROFILES_ACTIVE=server-2
     networks:
-     - mynet     
-  portainer:
-    image: "portainer/portainer"
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - /etc/localtime:/etc/localtime
-     - /etc/timezone:/etc/timezone
-    network_mode: "host"
-  redis:
-    image: "redis"
-    ports:
-     - "6379:6379"
-    volumes:
-     - /etc/localtime:/etc/localtime
-     - /etc/timezone:/etc/timezone
-    networks:
-      mynet:
-        aliases:
-         - redis
-  mysql:
-    image: "mysql"
-    ports:
-     - "3306:3306"
-    environment:
-     - MYSQL_ROOT_PASSWORD=passw0rd
-     - MYSQL_DATABASE=oauth2
-     - MYSQL_USER=oauth2-server
-     - MYSQL_PASSWORD=passw0rd
-    volumes:
-     - /etc/localtime:/etc/localtime
-     - /etc/timezone:/etc/timezone
-    networks:
      - mynet
-  openldap:
-    image: "osixia/openldap"
-    ports:
-     - "389:389"
-     - "689:689"
-    environment:
-     - LDAP_ORGANISATION=Spring boot OAuth2 POC
-     - LDAP_DOMAIN1=hung.org
-     - LDAP_BASE_DN1=dc=hung,dc=org
-     - LDAP_ADMIN_PASSWORD=passw0rd
-    volumes:
-     - /etc/localtime:/etc/localtime
-     - /etc/timezone:/etc/timezone
-    networks:
-     - mynet
-  openldap-admin:
-    image: "osixia/phpldapadmin"
-    ports:
-     - "6443:443"
-    environment:
-     - PHPLDAPADMIN_LDAP_HOSTS=openldap
-    links:
-     - openldap
 networks:
   mynet:
-    driver: bridge
-    attachable: true
+    external: true
+    name: spring-boot-oauth2-server_mynet
