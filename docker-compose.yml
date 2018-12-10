@@ -7,8 +7,6 @@ services:
      - "80:80"
     volumes:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
-    user: haproxy
-    group: haproxy
     networks:
      - mynet
   oauth2-server-1:
