@@ -56,7 +56,7 @@ services:
      - /etc/timezone:/etc/timezone
     networks:
       mynet:
-        alias:
+        aliases:
          - openldap     
   openldap-admin:
     image: "osixia/phpldapadmin"
