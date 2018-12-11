@@ -1,5 +1,13 @@
 version: '3.7'
 
+networks:
+  mynet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 192.168.11.0/24
+       
 services:
   haproxy:
     image: "haproxy:1.8.14"
@@ -9,6 +17,7 @@ services:
      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     networks:
      - mynet
+ 
   oauth2-server-1:
     image: "openjdk:8"
     working_dir: /usr/local/springboot
@@ -18,8 +27,6 @@ services:
     environment:
      - SPRING_PROFILES_ACTIVE=server-1
     networks:
-     - mynet
-networks:
-  mynet:
-    external: true
-    name: spring-boot-oauth2-server_mynet
+      mynet:
+        ipv4_address: 192.168.11.100
+
