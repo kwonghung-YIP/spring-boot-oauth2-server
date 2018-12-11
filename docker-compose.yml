@@ -30,6 +30,18 @@ services:
       mynet:
         ipv4_address: 192.168.11.100
 
+  oauth2-server-2:
+    image: "openjdk:8"
+    working_dir: /usr/local/springboot
+    command: ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar"]
+    volumes:
+    - ./build/libs/spring-boot-oauth2-server-0.0.1-SNAPSHOT.jar:/usr/local/springboot/app.jar
+    environment:
+     - SPRING_PROFILES_ACTIVE=server-2
+    networks:
+      mynet:
+        ipv4_address: 192.168.11.101
+        
   redis:
     image: "redis"
     volumes:
@@ -71,4 +83,14 @@ services:
     networks:
       mynet:
         aliases:
-         - openldap     
+         - openldap
+         
+  portainer:
+    image: "portainer/portainer"
+    ports:
+     - "9000:9000"
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    network_mode: "host"         
