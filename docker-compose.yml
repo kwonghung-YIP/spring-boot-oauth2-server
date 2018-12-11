@@ -30,3 +30,45 @@ services:
       mynet:
         ipv4_address: 192.168.11.100
 
+  redis:
+    image: "redis"
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    networks:
+      mynet:
+        aliases:
+         - redis
+
+  mysql:
+    image: "mysql"
+    environment:
+     - MYSQL_ROOT_PASSWORD=passw0rd
+     - MYSQL_DATABASE=oauth2
+     - MYSQL_USER=oauth2-server
+     - MYSQL_PASSWORD=passw0rd
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    networks:
+      mynet:
+        aliases:
+         - mysql
+
+  openldap:
+    image: "osixia/openldap"
+    ports:
+     - "389:389"
+     - "689:689"
+    environment:
+     - LDAP_ORGANISATION=Spring boot OAuth2 POC
+     - LDAP_DOMAIN1=hung.org
+     - LDAP_BASE_DN1=dc=hung,dc=org
+     - LDAP_ADMIN_PASSWORD=passw0rd
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    networks:
+      mynet:
+        aliases:
+         - openldap     
