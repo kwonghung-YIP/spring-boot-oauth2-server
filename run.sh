@@ -6,3 +6,10 @@ docker run --rm -it \
   -w /usr/local/project \
   gradle:4.10-jdk8 \
   gradle build -x test
+  
+docker run --rm -it \
+  -v `pwd`/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg \
+  haproxy:1.8.14 \
+  haproxy -c -f /usr/local/etc/haproxy/haproxy.cfg
+  
+docker-compose up --detach
